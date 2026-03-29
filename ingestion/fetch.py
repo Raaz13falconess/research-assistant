@@ -47,10 +47,11 @@ class FetchPaper:
                 "categories": result.categories,
                 "pdf_url": result.pdf_url,
                 })
+                time.sleep(0.1)
         except Exception as e:
             logger.error(f"Fetched failed {e}")
             raise
-        
+
         self.output_path.parents.mkdir(parents=True, exist_ok = True)
         self.output_path.write_text(json.dumps(papers, indent=2))
         logger.success(f"Saved {len(papers)} papers to {self.output_path}")
